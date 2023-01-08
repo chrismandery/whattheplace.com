@@ -6,21 +6,22 @@ This project was actively developed between 2009 and ~2012 and the webpage opera
 
 ## Necessary Packages (from old README)
 
+**Note (2022): The requirements.txt file is provided as it was on the time. Getting the code to work today problably will not work with the packages from the PyPI and would require to obtain the legacy package versions from somewhere else.**
+
 See requirements.txt
 
 To compile PIL:
+```
 sudo apt-get install python-dev
+```
 
 Enabling JPEG support in PIL (tested on Ubuntu 13.04 and 13.10):
+```
 sudo apt-get install libjpeg62 libjpeg62-dev
 sudo ln -s /usr/lib/x86_64-linux-gnu/libz.so /usr/lib/libz.so
 sudo ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib/libjpeg.so
 sudo ln -s /usr/lib/x86_64-linux-gnu/libfreetype.so /usr/lib/libfreetype.so
-
-- >= Django 1.2
-- python-openid
-- http://github.com/facebook/python-sdk/
-- Tweepy
+```
 
 ## Coding Conventions (from old README)
 
