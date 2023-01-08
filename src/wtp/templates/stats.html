@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="databox">
+	<h2>Stats</h2>
+	
+	<table>
+		<tr>
+			<td></td>
+			<td class="datacolumn">Total</td>
+			<td class="datacolumn">24 hours</td>
+			<td class="datacolumn">7 days</td>
+			<td class="datacolumn">30 days</td>
+		</tr>
+		
+		{% for record in stats.stats1 %}
+			<tr>
+				<td>{{ record.name }} </td>
+				{% if record.total >= 0 %}
+					<td>{{ record.total }}</td>
+					<td>{% if record.1d %}+{% endif %}{{ record.1d }}</td>
+					<td>{% if record.7d %}+{% endif %}{{ record.7d }}</td>
+					<td>{% if record.30d %}+{% endif %}{{ record.30d }}</td>
+				{% else %}
+					<td>-</td>
+					<td>{{ record.1d }}</td>
+					<td>{{ record.7d }}</td>
+					<td>{{ record.30d }}</td>
+				{% endif %}
+			</tr>
+		{% endfor %}
+	</table>
+	
+	<br />
+	
+	<table>
+		<tr>
+			<td></td>
+			<td class="datacolumn">Total</td>
+		</tr>
+		
+		{% for record in stats.stats2 %}
+			<tr>
+				<td>{{ record.name }} </td>
+				<td>{{ record.value }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}

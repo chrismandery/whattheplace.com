@@ -1,0 +1,13 @@
+<p class="centered">
+	{% if page.has_previous %}
+		<a href="{% url "wtp.views.hallOfFameDetail" pageType=pageType page=1 %}">&lt;&lt;</a>
+		<a href="{% url "wtp.views.hallOfFameDetail" pageType=pageType page=page.previous_page_number %}">&lt;</a>
+	{% endif %}
+	
+	page {{ page.number }} of {{ page.paginator.num_pages }}
+	
+	{% if page.has_next %}
+		<a href="{% url "wtp.views.hallOfFameDetail" pageType=pageType page=page.next_page_number %}">&gt;</a>
+		<a href="{% url "wtp.views.hallOfFameDetail" pageType=pageType page=page.paginator.num_pages %}">&gt;&gt;</a>
+	{% endif %}
+</p>

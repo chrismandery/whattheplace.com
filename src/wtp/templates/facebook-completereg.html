@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="databox">
+	<h2>Complete registration</h2>
+	
+	<p>
+		Please pick a nick name to confirm your registration. You can modify or remove your mail address, if you want
+		(it is optional). If you specify a mail address, you will receive a confirmation mail.
+	</p>
+	
+	<form action="{% url "wtp.views.facebookCompleteRegistration" %}" method="post">
+		{% csrf_token %}
+		
+		{{ form.non_field_errors }}
+		
+		<table>
+			{% for field in form %}
+				<tr>
+					<td>
+						{% if not field.is_hidden %}
+							{{ field.label_tag }}:
+						{% endif %}
+					</td>
+					<td>{{ field.errors }}{{ field }}</td>
+				</tr>
+			{% endfor %}
+			
+			<tr>
+				<td colspan="2" class="submit-button">
+					<input type="submit" name="submit" value="Complete registration" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="databox">
+	<h2>Settings</h2>
+	
+	<h3>Third-party authentification</h3>
+	
+	{% include "settings-auth.html" %}
+	
+	<h3>User settings</h3>
+	
+	<form action="{% url "wtp.views.settings" %}" method="post">
+		{% csrf_token %}
+		
+		{{ form.non_field_errors }}
+		
+		<table>
+			<tr>
+				<td>Nick name:</td>
+				<td>{{ user.username }}</td>
+			</tr>
+			
+			{% for field in form %}
+				<tr>
+					<td class="form-padded">{{ field.label_tag }}:</td>
+					<td class="form-padded">
+						{{ field.errors }}{{ field }}<br />
+						{% if field.help_text %}
+							<span class="formdesc">{{ field.help_text }}</span>
+						{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+			
+			<tr>
+				<td colspan="2" class="submit-button">
+					<input type="submit" name="submit" value="Submit" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+{% endblock %}

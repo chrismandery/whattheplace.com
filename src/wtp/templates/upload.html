@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="databox">
+	<h2>Upload</h2>
+	
+	<p>Please note that images will stay invisible until they have been approved by an administrator.</p>
+	
+	<form action="{% url "wtp.views.upload" %}" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		
+		<table>
+			{% for field in form %}
+				<tr>
+					<td class="form-field-name">
+						{% if field.field.required %}
+							{{ field.label_tag }} (<span class="highlight">*</span>):
+						{% else %}
+							{{ field.label_tag }}:
+						{% endif %}
+					</td>
+					
+					<td>
+						{{ field.errors }}{{ field }}<br />
+						<span class="formdesc">{{ field.help_text }}</span>
+					</td>
+				</tr>
+			{% endfor %}
+			
+			<tr>
+				<td colspan="2" class="submit-button">
+					<input type="submit" name="submit" value="Upload" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+{% endblock %}

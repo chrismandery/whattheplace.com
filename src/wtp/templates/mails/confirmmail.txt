@@ -1,0 +1,9 @@
+Dear user,
+
+thanks for registering with "What The Place?".
+
+Please visit the following URL to confirm your mail address:
+{{ baseUrl }}{% url "wtp.views.mailConfirm" givenKey=confirmKey %}
+
+If you did not register with "What The Place?" please do nothing and
+you will not get any further mails.

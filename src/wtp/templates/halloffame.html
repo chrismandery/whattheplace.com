@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="databox">
+	<h2>Hall of Fame</h2>
+	
+	<div class="scorebox topscores">
+		<h3>Top Uploaders</h3>
+		{% with topUploaders as data %}
+			{% include "halloffame-table.html" %}
+		{% endwith %}
+	</div>
+	
+	<div class="scorebox topscores">
+		<h3>Top Solvers</h3>
+		{% with topSolvers as data %}
+			{% include "halloffame-table.html" %}
+		{% endwith %}
+	</div>
+	
+	<div class="scorebox topscores">
+		<h3>Top First Solvers</h3>
+		{% with topFirstSolvers as data %}
+			{% include "halloffame-table.html" %}
+		{% endwith %}
+	</div>
+	
+	<div class="terminate-divs"></div>
+</div>
+{% endblock %}

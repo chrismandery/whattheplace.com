@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="main">
+	{% if image.status == "SolvedIt" %}
+		<div class="imagebox" id="imagebox-border-solvedit">
+	{% endif %}
+	{% if image.status == "GaveUp" %}
+		<div class="imagebox" id="imagebox-border-gaveup">
+	{% endif %}
+	{% if image.status == "OwnImage" %}
+		<div class="imagebox" id="imagebox-border-ownimage">
+	{% endif %}
+	{% if image.status == "Unsolved" %}
+		<div class="imagebox" id="imagebox-border-unsolved">
+	{% endif %}
+		{% include "image-nav.html" %}
+		
+		{% if image.hint %}
+			<div id="main-hint-available">
+				hover image for hint
+			</div>
+			
+			<img src="/media/images/{{ image.imageHash }}.jpeg"
+				alt="Hint: {{ image.hint }} - Guess where the picture has been taken!" title="Hint: {{ image.hint }}" />
+		{% else %}
+			<img src="/media/images/{{ image.imageHash }}.jpeg" alt="Guess where the picture has been taken!" />
+		{% endif %}
+		
+		{% include "image-nav.html" %}
+	</div>
+	
+	{% include "image-input.html" %}
+	
+	{% include "image-info.html" %}
+	
+	{% if image.status != "Unsolved" %}
+		{% include "image-comments.html" %}
+	{% endif %}
+</div>
+{% endblock %}

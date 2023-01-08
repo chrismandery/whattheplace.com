@@ -1,0 +1,8 @@
+Request{{ digest.requests|pluralize }}: {{ digest.requests }}
+Session{{ digest.sessions|pluralize }}: {{ digest.sessions }}
+User{{ digest.users|pluralize }}: {{ digest.users }}
+Resolution{{ digest.resolutions|pluralize }}: {{ digest.resolutions }}
+Comment{{ digest.comments|pluralize }}: {{ digest.comments }}
+
+Digest start: {{ digest.start|date:"r" }}
+Digest end: {{ digest.end|date:"r" }}

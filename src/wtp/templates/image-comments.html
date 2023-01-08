@@ -1,0 +1,36 @@
+{% if user.is_authenticated %}
+	<div class="main-bottombox">
+		<form action="{% url "wtp.views.postComment" %}" method="post">
+			{% csrf_token %}
+			
+			<div>
+				<input type="hidden" name="image" value="{{ image.id }}" />
+				<textarea name="text" rows="4" cols=""></textarea>
+			</div>
+			
+			<div class="comment-submit">
+				<input type="submit" id="input-submit" name="submit" value="Post comment" />
+			</div>
+		</form>
+	</div>
+{% endif %}
+
+{% for comment in comments %}
+	<div class="main-bottombox">
+		<div class="highlight">
+			#{{ forloop.revcounter }}:
+			{% if comment.user.get_profile.showPublicProfile %}
+				<a href="{% url "wtp.views.userProfile" userName=comment.user.username %}">
+					{{ comment.user.username }}
+				</a>
+			{% else %}
+				{{ comment.user.username }}
+			{% endif %}
+			on {{ comment.timestamp|date }}
+		</div>
+		
+		<div>
+			{{ comment.text }}
+		</div>
+	</div>
+{% endfor %}

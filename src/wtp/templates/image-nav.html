@@ -1,0 +1,111 @@
+<div class="main-nav">
+	<form action="{% url "wtp.views.changeFilter" %}" method="post">
+		{% csrf_token %}
+		
+		<div class="main-left">
+			{% if imageNav.first %}
+				<input type="button" value="&lt;&lt;"
+					onclick="setUrl('{% url "wtp.views.showImage" imageId=imageNav.first.id %}');" />
+			{% else %}
+				<input type="button" value="&lt;&lt;" disabled="disabled" />
+			{% endif %}
+			
+			{% if imageNav.prev %}
+				<input type="button" value="&lt;"
+					onclick="setUrl('{% url "wtp.views.showImage" imageId=imageNav.prev.id %}');" />
+			{% else %}
+				<input type="button" value="&lt;" disabled="disabled" />
+			{% endif %}
+			
+			<input type="text" name="imageidbox" value="{{ image.id }}"
+				onkeypress="return imageIdBoxSubmit(event, this.value);" />
+			
+			{% if imageNav.next %}
+				<input type="button" value="&gt;"
+					onclick="setUrl('{% url "wtp.views.showImage" imageId=imageNav.next.id %}');" />
+			{% else %}
+				<input type="button" value="&gt;" disabled="disabled" />
+			{% endif %}
+			
+			{% if imageNav.last %}
+				<input type="button" value="&gt;&gt;"
+					onclick="setUrl('{% url "wtp.views.showImage" imageId=imageNav.last.id %}');" />
+			{% else %}
+				<input type="button" value="&gt;&gt;" disabled="disabled" />
+			{% endif %}
+			
+			{% if imageNav.random %}
+				<input type="button" value="Random"
+					onclick="setUrl('{% url "wtp.views.showImage" imageId=imageNav.random.id %}');" />
+			{% else %}
+				<input type="button" value="Random" disabled="disabled" />
+			{% endif %}
+			
+			&nbsp;&nbsp;&nbsp;
+			
+			<select name="filtermode" size="1" onchange="this.form.submit();">
+				<option value="All"{% if filterMode == "All" %} selected="selected"{% endif %}>
+					all images
+				</option>
+				
+				{% if user.is_authenticated %}
+					<option value="Own"{% if filterMode == "Own" %} selected="selected"{% endif %}>
+						own images
+					</option>
+				{% else %}
+					<option disabled="disabled">
+						own images (reg. only)
+					</option>
+				{% endif %}
+				
+				{% if user.is_authenticated %}
+					<option value="Solvable"{% if filterMode == "Solvable" %} selected="selected"{% endif %}>
+						solvable images
+					</option>
+				{% else %}
+					<option disabled="disabled">
+						solvable images (reg. only)
+					</option>
+				{% endif %}
+				
+				{% if user.is_authenticated %}
+					<option value="Solved"{% if filterMode == "Solved" %} selected="selected"{% endif %}>
+						solved images
+					</option>
+				{% else %}
+					<option disabled="disabled">
+						solved images (reg. only)
+					</option>
+				{% endif %}
+				
+				<option value="Unsolved"{% if filterMode == "Unsolved" %} selected="selected"{% endif %}>
+					unsolved images
+				</option>
+				
+				{% if user.is_authenticated %}
+					<option value="UnsolvedByMe"{% if filterMode == "UnsolvedByMe" %} selected="selected"{% endif %}>
+						unsolved by me
+					</option>
+				{% else %}
+					<option disabled="disabled">
+						unsolved by me (reg. only)
+					</option>
+				{% endif %}
+				
+				{% if user.is_authenticated %}
+					<option value="GaveUp"{% if filterMode == "GaveUp" %} selected="selected"{% endif %}>
+						given up images
+					</option>
+				{% else %}
+					<option disabled="disabled">
+						given up images (reg. only)
+					</option>
+				{% endif %}
+			</select>
+		</div>
+	</form>
+	
+	<div class="main-right">
+		<input type="button" value="Report" onclick="setUrl('{% url "wtp.views.reportImage" imageId=image.id %}');" />
+	</div>
+</div>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="databox">
+	<h2>Hall of Fame</h2>
+	<h3>{{ title }}</h3>
+	
+	<p><a href="{% url "wtp.views.hallOfFame" %}">back to Hall of Fame</a></p>
+	
+	{% include "halloffame-detail-nav.html" %}
+	
+	<div class="scorebox">
+		{% include "halloffame-table.html" %}
+	</div>
+	
+	{% include "halloffame-detail-nav.html" %}
+</div>
+{% endblock %}

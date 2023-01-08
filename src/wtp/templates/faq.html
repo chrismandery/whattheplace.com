@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="databox">
+	<h2>Frequently Asked Questions</h2>
+	
+	<h3>How does &quot;What The Place?&quot; work?</h3>
+	<p>
+		&quot;What The Place?&quot; is essentially a quiz with the challenge to guess the location where a presented
+		picture has been taken. For each solved picture, registered users collect points for the
+		<a href="{% url "wtp.views.hallOfFame" %}">Hall of Fame</a> and more statistics and trophies are still to come.
+	</p>
+	
+	<h3>Why should I register?</h3>
+	<p>
+		If you register, your progress (i.e. your solved pictures) are permanently saved in your account and you will
+		be shown in the Hall of Fame- if you are good enough! Additionally, registered users are able to upload their
+		own images into the quiz.
+	</p>
+	
+	<h3>How does the new login system work?</h3>
+	<p>
+		If you either own an OpenID identity (e.g. a Google or Yahoo account) or a Facebook or Twitter account, you can
+		use them to <a href="{% url "wtp.views.login" %}">sign in</a> without a separate registration.
+	</p>
+	<p>
+		Of course, if you already have an account at &quot;What the Place?&quot;, you can always link it to an OpenID
+		identity or Facebook/Twitter account in the same way that you can de-link an existing account from any of the
+		authentification methods. In fact, actually more than one authentification method can be linked to an account
+		and you can then login using any of them!
+	</p>
+	<p>
+		Additionally, you can also set a password on an account created via OpenID, Facebook or Twitter and use it with
+		the password login then instead of the new login system.
+	</p>
+	
+	<h3>What technologies are being used?</h3>
+	<p>
+		The server hosting &quot;What the Place?&quot; is running <a href="http://www.debian.org/">Debian Squeeze</a>.
+		The page itself is powered by <a href="http://www.python.org">Python</a> using the excellent
+		<a href="http://www.djangoproject.net">Django Web Framework</a>. Besides Django and the Python standard
+		library, only the <a href="http://www.pythonware.com/products/pil/">Python Imaging Library (PIL)</a> is used
+		for manipulating images. <a href="http://www.apache.org">Apache</a> in conjunction with
+		<a href="http://code.google.com/p/modwsgi/">mod_wsgi</a> is used for serving the web pages and
+		<a href="http://www.postgresql.org/">PostgreSQL</a> as the database backend. Connection to OpenID providers,
+		Facebook and Twitter is established with <a href="http://pypi.python.org/pypi/python-openid/">python-openid</a>,
+		<a href="http://github.com/facebook/python-sdk/">Facebook's Python SDK</a> and
+		<a href="http://code.google.com/p/tweepy/">Tweepy</a> respectively.
+	</p>
+</div>
+{% endblock %}

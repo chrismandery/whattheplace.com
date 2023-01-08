@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="databox databox-wide">
+	<h2>Profile: {{ username }}</h2>
+	
+	{% if user.username == username %}
+		<p>
+			If you do not want this public player profile anymore, you can disable it in your 
+			<a href="{% url "wtp.views.auth.showSettings" %}">settings</a>.
+		</p>
+	{% endif %}
+	 
+	<h3>Stats</h3>
+	<p>
+		{% if userProfile.uploaded %}
+			<a href="#section-uploaded">
+				Uploaded {{ userProfile.uploadedCount }} image{{ userProfile.uploadedCount|pluralize }}.<br />
+			</a>
+		{% endif %}
+		
+		{% if userProfile.solved %}
+			<a href="#section-solved">
+				Solved {{ userProfile.solvedCount }} image{{ userProfile.solvedCount|pluralize }}.<br />
+			</a>
+		{% endif %}
+		
+		{% if userProfile.gaveUp %}
+			<a href="#section-gaveup">
+				Gave up on {{ userProfile.gaveUpCount }} image{{ userProfile.gaveUpCount|pluralize }}.<br />
+			</a>
+		{% endif %}
+		
+		{% if userProfile.commented %}
+			<a href="#section-commented">
+				Wrote {{ userProfile.commentedCount }} comment{{ userProfile.commentedCount|pluralize }}.<br />
+			</a>
+		{% endif %}
+	</p>
+	
+	{% with userProfile.uploaded as list %} 
+		{% if list %}
+			<h3 id="section-uploaded">Uploaded</h3>
+			{% include "userprofile-list.html" %}
+		{% endif %}
+	{% endwith %}
+	
+	{% with userProfile.solved as list %} 
+		{% if list %}
+			<h3 id="section-solved">Solved</h3>
+			{% include "userprofile-list.html" %}
+		{% endif %}
+	{% endwith %}
+	
+	{% with userProfile.gaveUp as list %} 
+		{% if list %}
+			<h3 id="section-gaveup">Gave Up</h3>
+			{% include "userprofile-list.html" %}
+		{% endif %}
+	{% endwith %}
+	
+	{% with userProfile.commented as list %} 
+		{% if list %}
+			<h3 id="section-commented">Commented</h3>
+			{% include "userprofile-list.html" %}
+		{% endif %}
+	{% endwith %}
+</div>
+{% endblock %}

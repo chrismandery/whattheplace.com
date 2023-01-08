@@ -1,0 +1,18 @@
+<p class="centered">
+	{% if images.has_previous %}
+		<a href="{% url "wtp.views.overview" navType=navType page=1 %}">first</a> |
+		<a href="{% url "wtp.views.overview" navType=navType page=images.previous_page_number %}">previous</a>
+	{% else %}
+		first |
+		previous
+	{% endif %}
+	
+	| page {{ images.number }} of {{ images.paginator.num_pages }} |
+	{% if images.has_next %}
+		<a href="{% url "wtp.views.overview" navType=navType page=images.next_page_number %}">next</a> |
+		<a href="{% url "wtp.views.overview" navType=navType page=images.paginator.num_pages %}">last</a>
+	{% else %}
+		next |
+		last
+	{% endif %}
+</p>

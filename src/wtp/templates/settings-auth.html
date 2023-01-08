@@ -1,0 +1,61 @@
+{% load tags %}  
+
+{% if hasTwitter %}
+<form action="{% url "wtp.views.twitterDisconnect" %}" method="post">
+	{% csrf_token %}
+	
+	<p>
+		<input type="submit" name="disconnect" value="Disconnect account from Twitter" />
+	</p>
+</form>
+{% else %}	
+<form action="{% url "wtp.views.twitterConnect" %}" method="get">
+	<p>
+		<input type="submit" name="connect" value="Connect account to Twitter" />
+	</p>
+</form>
+{% endif %}
+
+{% if hasFacebook %}
+<form action="{% url "wtp.views.facebookDisconnect" %}" method="post">
+	{% csrf_token %}
+	
+	<p>
+		<input type="submit" name="disconnect" value="Disconnect account from Facebook" />
+	</p>
+</form>
+{% else %}	
+<form action="{% url "wtp.views.facebookConnect" %}" method="get">
+	<p>
+		<input type="submit" name="connect" value="Connect account to Facebook" />
+	</p>
+</form>
+{% endif %}
+
+{% for openIDIdentity in openIDIdentities %}
+	<form action="{% url "wtp.views.openIDDisconnect" %}" method="post">
+		{% csrf_token %}
+		
+		<p>
+			<input type="hidden" name="url" value="{{ openIDIdentity.url }}" />
+			<input type="submit" name="disconnect"
+				value="Disconnect from OpenID at {{ openIDIdentity.url|truncate:30 }}" />
+		</p>
+	</form>
+{% endfor %}
+
+<form action="{% url "wtp.views.openIDConnect" %}" method="get">
+	<p>
+		<input type="hidden" name="identity" value="https://www.google.com/accounts/o8/id" />
+		<input type="submit" name="connect" value="Connect account to Google" />
+	</p>
+</form>
+
+Connect account with OpenID identity:
+<form action="{% url "wtp.views.openIDConnect" %}" method="get">
+	<p>
+		<input type="text" id="openid-identity" name="identity" class="openid-url"
+			onfocus="cleanInputDefault('openid-identity')" value="Enter OpenID identity URL here" />
+		<input type="submit" name="submit" value="Connect" />
+	</p>
+</form>

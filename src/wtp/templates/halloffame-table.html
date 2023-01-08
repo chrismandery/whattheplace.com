@@ -1,0 +1,39 @@
+<table>
+	{% for entry in data.table %}
+		<tr{% cycle ' class="dark"' '' %}>
+			{% if page %}
+				<td class="rank">{{ forloop.counter|add:page.start_index|add:-1 }}.</td>
+			{% else %}
+				<td class="rank">{{ forloop.counter }}.</td>
+			{% endif %}
+				{% if entry.user.get_profile.showInHallOfFame %}
+					{% if user.username == entry.user.username %}
+						<td class="highlight">
+					{% else %} 
+						<td>
+					{% endif %}
+					
+					{% if entry.user.get_profile.showPublicProfile %}
+						<a href="{% url "wtp.views.userProfile" userName=entry.user.username %}">
+							{{ entry.user.username }}
+						</a>
+					{% else %}
+						{{ entry.user.username }}
+					{% endif %}
+					
+					({{ entry.count }} image{{ entry.count|pluralize }})
+				{% else %}
+					<td class="user">
+						(hidden)
+				{% endif %}
+			</td>
+		</tr>
+	{% endfor %}
+</table>
+
+<br />
+Average: {{ data.average|floatformat:2 }}
+
+{% if data.type %}
+	<p><a href="{% url "wtp.views.hallOfFameDetail" pageType=data.type page=1 %}">more...</a></p>
+{% endif %}

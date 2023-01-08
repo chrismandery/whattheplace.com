@@ -1,0 +1,2 @@
+A new image has been uploaded.
+Uploader: {{ username }}

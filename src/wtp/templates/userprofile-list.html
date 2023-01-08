@@ -1,0 +1,28 @@
+<table class="overview">
+	{% for row in list %}
+		<tr>
+			{% for image in row %}
+				{% if image == "filler" %}
+					<td class="fillcell"></td>
+				{% else %}
+					<td>
+						<a href="{% url "wtp.views.showImage" imageId=image.id %}">
+							{% if image.status == "Unsolved" %}
+								<img src="/media/thumbs/{{ image.imageHash }}.jpeg" class="unsolved" alt="Thumbnail" />
+							{% endif %}
+							{% if image.status == "SolvedIt" %}
+								<img src="/media/thumbs/{{ image.imageHash }}.jpeg" class="solvedit" alt="Thumbnail" />
+							{% endif %}
+							{% if image.status == "GaveUp" %}
+								<img src="/media/thumbs/{{ image.imageHash }}.jpeg" class="gaveup" alt="Thumbnail" />
+							{% endif %}
+							{% if image.status == "OwnImage" %}
+								<img src="/media/thumbs/{{ image.imageHash }}.jpeg" class="ownimage" alt="Thumbnail" />
+							{% endif %}
+						</a>
+					</td>
+				{% endif %}
+			{% endfor %}
+		</tr>
+	{% endfor %}
+</table>

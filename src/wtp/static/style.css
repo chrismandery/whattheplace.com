@@ -1,0 +1,360 @@
+/********************
+ *** Common stuff ***
+ ********************/
+
+.centered {
+	text-align: center
+}
+
+.highlight {
+	font-weight: bold
+}
+
+body, h1, h2, input, li, p, select, td {
+	font-family: Verdana
+}
+
+body, input, li, p, select, td {
+	font-size: 10pt
+}
+
+body, ul, p, td {
+	color: #666666
+}
+
+input, select, textarea {
+	background-color: #666666;
+	border: 1px solid #999999;
+	color: #FFFFFF;
+	padding: 2px
+}
+
+input[type=password], input[type=text], textarea {
+	width: 100%
+}
+
+a {
+	color: #999999;
+	text-decoration: none
+}
+
+a:hover {
+	color: #FFFFFF
+}
+
+body {
+	background-color: #000000
+}
+
+h1 {
+	color: #CCCCCC;
+	font-size: 24pt;
+	text-align: center
+}
+
+h2 {
+	color: #333333;
+	font-size: 16pt;
+	text-align: left
+}
+
+img {
+	border: 0px;
+	display: block
+}
+
+input[disabled] {
+	color: #999999
+}
+
+input[type=file] {
+	color: #FFFFFF
+}
+
+table {
+	width: 100%
+}
+
+td {
+	vertical-align: top
+}
+
+div#addthisbox {
+	background-color: #333333;
+	bottom: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 10px;
+	position: fixed;
+	right: 10px
+}
+
+div.databox {
+	background-color: #EEEEEE;
+	border: 2px solid #999999;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+	width: 600px
+}
+
+div.databox-wide {
+	width: 750px
+}
+
+div#menu p {
+	text-align: right
+}
+
+div.terminate-divs {
+	clear: both
+}
+
+input.openid-url {
+	width: 500px
+}
+
+p#footer {
+	color: #333333;
+	font-size: 7pt;
+	padding-top: 50px;
+	text-align: center
+}
+
+p.nojs-error {
+	color: #FF8888;
+	font-size: 7pt;
+	text-align: center
+}
+
+span.formdesc {
+	font-size: 7pt
+}
+
+td.form-field-name {
+	white-space: nowrap
+}
+
+td.form-padded {
+	padding-top: 15px
+}
+
+td.submit-button {
+	text-align: right
+}
+
+ul.errorlist {
+	color: #FF0000;
+	list-style-type: none;
+	margin-bottom: 5px;
+	margin-top: 0px
+}
+
+/********************
+ *** Hall of Fame ***
+ ********************/
+
+div.topscores {
+	float: left;
+	width: 180px
+}
+
+div.scorebox {
+	padding: 10px;
+	text-align: center
+}
+
+div.scorebox table {
+	border-collapse: collapse
+}
+
+div.scorebox td {
+	padding: 3px
+}
+
+div.scorebox td.rank {
+	width: 20px
+}
+
+div.scorebox tr.dark {
+	background-color: #DDDDDD
+}
+
+/******************
+ *** Login page ***
+ ******************/
+
+div.login-box {
+	float: left;
+	width: 295px
+}
+
+/*****************
+ *** Main page ***
+ *****************/
+
+div.comment-submit {
+	text-align: right
+}
+
+div.giveup-button {
+	float: right
+}
+
+div.imagebox {
+	background-color: #333333
+}
+
+div.imagebox img {
+	margin-left: auto;
+	margin-right: auto
+}
+
+div#imagebox-border-gaveup {
+	border: 3px solid #993333
+}
+
+
+div#imagebox-border-ownimage {
+	border: 3px solid #339999
+}
+
+div#imagebox-border-solvedit {
+	border: 3px solid #339933
+}
+
+div#imagebox-border-unsolved {
+	border: 3px solid #EEEEEE
+}
+
+div#main {
+	margin-left: auto;
+	margin-right: auto;
+	width: 606px
+}
+
+div.main-bottombox {
+	background-color: #333333;
+	margin-top: 5px;
+	padding: 10px
+}
+
+div.main-bottombox input[type=text] {
+	width: 200px
+}
+
+div.main-bottombox input[type=text].wronganswer {
+	border: 1px solid #FF0000
+}
+
+div.main-bottombox span.bb-highlight {
+	color: #999999;
+	font-weight: bold
+}
+
+div.main-bottombox span.gaveup {
+	color: #FF3333
+}
+
+div.main-bottombox span.notsolved {
+	color: #FF3333
+}
+
+div.main-bottombox span.ownimage {
+	color: #33FFFF
+}
+
+div.main-bottombox span.solution {
+	color: #CCCCCC
+}
+
+div.main-bottombox span.solvedit {
+	color: #33FF33
+}
+
+div#main-hint-available {
+	font-size: 8pt;
+	padding: 10px;
+	position: absolute
+}
+
+div.main-left {
+	position: absolute;
+	left: 10px;
+	top: 2px
+}
+
+div.main-nav {
+	background-color: #EEEEEE;
+	height: 22px;
+	position: relative
+}
+
+div.main-nav input {
+	font-size: 7pt;
+	height: 18px
+}
+
+div.main-nav input[type=text] {
+	height: 12px;
+	width: 30px
+}
+
+div.main-nav select {
+	font-size: 7pt;
+	height: 18px
+}
+
+div.main-right {
+	position: absolute;
+	right: 10px;
+	top: 2px
+}
+
+/*****************************************
+ *** Overview page/player profile page ***
+ *****************************************/
+
+table.overview {
+	border-collapse: collapse
+}
+
+table.overview td {
+	border: 1px dotted #333333;
+	height: 180px;
+	vertical-align: middle;
+	width: 180px
+}
+
+table.overview td.fillcell {
+	border: 0px
+}
+
+table.overview img {
+	margin-left: auto;
+	margin-right: auto
+}
+
+table.overview img.gaveup {
+	border: 2px solid #993333
+}
+
+table.overview img.ownimage {
+	border: 2px solid #339999
+}
+
+table.overview img.solvedit {
+	border: 2px solid #33FF33
+}
+
+table.overview img.unsolved {
+	border: 2px solid #999999
+}
+
+/*************
+ *** Stats ***
+ *************/
+ 
+td.datacolumn {
+	width: 80px
+}

@@ -1,0 +1,9 @@
+Django<1.7
+django-debug-toolbar
+django-dtpanel-htmltidy
+facebook-sdk
+pil
+psycopg2
+python-openid
+South
+# tweepy

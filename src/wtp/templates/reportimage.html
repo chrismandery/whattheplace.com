@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="databox">
+	<h2>Report image</h2>
+	
+	<form action="{% url "wtp.views.reportImage" imageId=image.id %}" method="post">
+		{% csrf_token %}
+		
+		<table>
+			<tr>
+				<td>Image to report:</td>
+				<td>Image #{{ image.id }} uploaded by {{ image.uploader.username }} on {{ image.dateAdded|date }}.</td>
+			</tr>
+			
+			<tr>
+				<td>{{ form.text.label_tag }}:</td>
+				<td>{{ form.text.errors }}{{ form.text }}</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" class="submit-button">
+					<input type="submit" name="submit" value="Report image" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="databox databox-wide">
+	<h2>Overview</h2>
+	<p>
+		<select id="pt" size="1" onchange="setUrl(document.getElementById('pt').value);">
+			<option value="{% url "wtp.views.overview" navType="All" page=1 %}"
+				{% if navType == "All" %}selected="selected"{% endif %}>
+				all images
+			</option>
+			
+			{% if user.is_authenticated %}
+				<option value="{% url "wtp.views.overview" navType="Own" page=1 %}"
+					{% if navType == "Own" %}selected="selected"{% endif %}>
+					own images
+				</option>
+			{% else %}
+				<option disabled="disabled">
+					own images (reg. only)
+				</option>
+			{% endif %}
+			
+			{% if user.is_authenticated %}
+				<option value="{% url "wtp.views.overview" navType="Solvable" page=1 %}"
+					{% if navType == "Solvable" %}selected="selected"{% endif %}>
+					solvable images
+				</option>
+			{% else %}
+				<option disabled="disabled">
+					solvable images (reg. only)
+				</option>
+			{% endif %}
+			
+			{% if user.is_authenticated %}
+				<option value="{% url "wtp.views.overview" navType="Solved" page=1 %}"
+					{% if navType == "Solved" %}selected="selected"{% endif %}>
+					solved images
+				</option>
+			{% else %}
+				<option disabled="disabled">
+					solved images (reg. only)
+				</option>
+			{% endif %}
+			
+			<option value="{% url "wtp.views.overview" navType="Unsolved" page=1 %}"
+				{% if navType == "Unsolved" %}selected="selected"{% endif %}>
+				unsolved images
+			</option>
+			
+			{% if user.is_authenticated %}
+				<option value="{% url "wtp.views.overview" navType="UnsolvedByMe" page=1 %}"
+					{% if navType == "UnsolvedByMe" %}selected="selected"{% endif %}>
+					unsolved by me
+				</option>
+			{% else %}
+				<option disabled="disabled">
+					unsolved by me (reg. only)
+				</option>
+			{% endif %}
+			
+			{% if user.is_authenticated %}
+				<option value="{% url "wtp.views.overview" navType="GaveUp" page=1 %}"
+					{% if navType == "GaveUp" %}selected="selected"{% endif %}>
+					given up images
+				</option>
+			{% else %}
+				<option disabled="disabled">
+					given up images (reg. only)
+				</option>
+			{% endif %}
+		</select>
+	</p>
+	
+	{% if rows %}
+		{% include "overview-nav.html" %}
+		
+		<table class="overview">
+			{% for row in rows %}
+				<tr>
+					{% for image in row %}
+						{% if image == "filler" %}
+							<td class="fillcell"></td>
+						{% else %}
+							<td>
+								<a href="{% url "wtp.views.showImage" imageId=image.id %}">
+									{% if image.status == "Unsolved" %}
+										<img src="/media/thumbs/{{ image.imageHash }}.jpeg" class="unsolved"
+											alt="Thumbnail" />
+									{% endif %}
+									{% if image.status == "SolvedIt" %}
+										<img src="/media/thumbs/{{ image.imageHash }}.jpeg" class="solvedit"
+											alt="Thumbnail" />
+									{% endif %}
+									{% if image.status == "GaveUp" %}
+										<img src="/media/thumbs/{{ image.imageHash }}.jpeg" class="gaveup"
+											alt="Thumbnail" />
+									{% endif %}
+									{% if image.status == "OwnImage" %}
+										<img src="/media/thumbs/{{ image.imageHash }}.jpeg" class="ownimage"
+											alt="Thumbnail" />
+									{% endif %}
+								</a>
+							</td>
+						{% endif %}
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</table>
+		
+		{% include "overview-nav.html" %}
+	{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="databox">
+	<h2>Registration</h2>
+	
+	<p class="highlight">
+		You do not need to register here if you own either an OpenID identity (like a Google or Yahoo account) or a
+		Facebook or Twitter account. More details can be found in the <a href="{% url "wtp.views.faq" %}">FAQ</a>.
+	</p>
+	
+	<p>
+		If you enter your mail adress, you can use your mail address later to let us send you a new password in case
+		you have forgotten the old one.
+	</p>
+	
+	<form action="{% url "wtp.views.register" %}" method="post">
+		{% csrf_token %}
+		
+		{{ form.non_field_errors }}
+		
+		<table>
+			{% for field in form %}
+				<tr>
+					<td class="form-field-name">
+						{% if field.field.required %}
+							{{ field.label_tag }} (<span class="highlight">*</span>):
+						{% else %}
+							{{ field.label_tag }}:
+						{% endif %}
+					</td>
+					<td>
+						{{ field.errors }}{{ field }}
+					</td>
+				</tr>
+			{% endfor %}
+			
+			<tr>
+				<td colspan="2" class="submit-button">
+					<input type="submit" name="submit" value="Register!" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+{% endblock %}

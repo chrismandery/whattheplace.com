@@ -1,0 +1,50 @@
+<div class="main-bottombox">
+	Image uploaded by
+	{% if image.uploader.get_profile.showPublicProfile %}
+		<a href="{% url "wtp.views.userProfile" userName=image.uploader.username %}">
+			<span class="bb-highlight">{{ image.uploader.username }}</span>
+		</a>
+	{% else %}
+			<span class="bb-highlight">{{ image.uploader.username }}</span>
+	{% endif %}
+	on {{ image.dateAdded|date }},
+	viewed <span class="bb-highlight">{{ image.views }}</span> times.<br />
+	
+	{% if resolutions %}
+		Solved <span class="bb-highlight">{{ resolutions.count }}</span> times, first by
+		{% if firstsolver.user.get_profile.showAsFirstSolver %}
+			{% if firstsolver.user.get_profile.showPublicProfile %}
+				<a href="{% url "wtp.views.userProfile" userName=firstsolver.user.username %}">
+					<span class="bb-highlight">{{ firstsolver.user.username }}</span>
+				</a>
+			{% else %}
+				<span class="bb-highlight">{{ firstsolver.user.username }}</span>
+			{% endif %}
+		{% else %}
+			(hidden)
+		{% endif %}
+		on {{ firstsolver.timestamp|date }}
+		(<a href="{% url "wtp.views.solvers" imageId=image.id %}">more...</a>)
+	{% else %}
+		<span class="notsolved">Not solved up to now.</span>
+	{% endif %}
+</div>
+
+<div class="main-bottombox">
+	Image license: <a href="{{ image.license.url }}">{{ image.license.name }}</a>
+	
+	{% if image.author %}
+		<br />
+		Author: {{ image.author }}
+	{% endif %}
+	
+	{% if image.source %}
+		<br />
+		Source:
+		{% if image.status != "Unsolved" %}
+			{{ image.source|urlizetrunc:70 }}
+		{% else %}
+			(hidden until you solved the image or gave up)
+		{% endif %}
+	{% endif %}
+</div>

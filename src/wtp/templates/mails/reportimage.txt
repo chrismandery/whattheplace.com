@@ -1,0 +1,4 @@
+Image #{{ imageId }} has been reported.
+User: {{ username }}
+Reason:
+{{ reason }}

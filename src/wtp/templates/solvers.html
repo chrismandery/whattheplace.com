@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="databox">
+	<h2>Solvers for <a href="{% url "wtp.views.showImage" imageId=image.id %}">#{{ image.id }}</a></h2>
+	
+	<p>Only users that allowed to be shown here in their settings are displayed.</p>
+	
+	{% if resolutions %}
+		<ul>
+			{% for entry in resolutions %}
+				<li>
+					{% if entry.user.get_profile.showPublicProfile %}
+						<a href="{% url "wtp.views.userProfile" userName=entry.user.username %}">
+							<span class="highlight">{{ entry.user.username }}</span>
+						</a>
+					{% else %}
+						<span class="highlight">{{ entry.user.username }}</span>
+					{% endif %}
+				</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>No user visible.</p>
+	{% endif %}
+</div>
+{% endblock %}

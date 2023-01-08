@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="databox">
+	<h2>Login</h2>
+	
+	<div class="login-box">
+		<h3>Third-party authentification</h3>
+		
+		<p>
+			<a href="{% url "wtp.views.facebookConnect" %}">
+				<img src="/static/facebook_login.png" alt="Sign in with Facebook" />
+			</a>
+		</p>
+		
+		<p>
+			<a href="{% url "wtp.views.twitterConnect" %}">
+				<img src="/static/twitter_login.png" alt="Sign in with Twitter" />
+			</a>
+		</p>
+		
+		<p>
+			<a href="{% url "wtp.views.openIDConnect" %}?identity=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid">
+				<img src="/static/google_login.png" alt="Sign in with Google" />
+			</a>
+		</p>
+	</div>
+	
+	<div class="login-box">
+		<h3>Using password</h3>
+		<form action="{% url "wtp.views.login" %}" method="post">
+			{% csrf_token %}
+			
+			{{ form.non_field_errors }}
+			
+			<table>
+				{% for field in form %}
+					<tr>
+						<td>{{ field.label_tag }}:</td>
+						<td>{{ field }}</td>
+					</tr>
+				{% endfor %}
+				
+				<tr>
+					<td><a href="{% url "wtp.views.forgotPassword" %}">Forgot password?</a></td>
+					<td class="submit-button"><input type="submit" name="submit" value="Login" /></td>
+				</tr>
+			</table>
+		</form>
+		
+		<p>
+			<a href="{% url "wtp.views.register" %}">Click here to register</a>
+		</p>
+	</div>
+	
+	<div class="terminate-divs"></div>
+	
+	<h3>Using OpenID</h3>
+	
+	<form action="{% url "wtp.views.openIDConnect" %}" method="get">
+		<p>
+			<input type="text" id="openid-identity" name="identity" class="openid-url"
+				onfocus="cleanInputDefault('openid-identity')" value="Enter OpenID identity URL here" />
+			<input type="submit" name="submit" value="Login" />
+		</p>
+	</form>
+</div>
+{% endblock %}
+
+{% block menuLoginLink %}
+	login |
+{% endblock %}

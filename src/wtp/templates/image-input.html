@@ -1,0 +1,43 @@
+<div class="main-bottombox">
+	{% if image.status != "Unsolved" %}
+		{% if image.status == "SolvedIt" %}
+			<span class="highlight solvedit">You solved it!</span>
+		{% endif %}
+		{% if image.status == "GaveUp" %}
+			<span class="highlight gaveup">You gave up!</span>
+		{% endif %}
+		{% if image.status == "OwnImage" %}
+			<span class="highlight ownimage">You submitted this image.</span>
+		{% endif %}
+		
+		Correct answer{{ solutions|pluralize}}:
+		<span class="solution">
+			{{ solutions|join:", " }}
+		</span>
+	{% else %}
+		{% if user.is_authenticated %}
+			<form action="{% url "wtp.views.resolve" %}" method="post">
+				{% csrf_token %}
+				<div class="giveup-button">
+					<input type="hidden" name="image" value="{{ image.id }}" />
+					<input type="submit" name="submit" value="Give up and show solution" />
+				</div>
+			</form>
+		{% else %}
+			<div class="giveup-button">
+				<input type="submit" name="submit" value="Give up and show solution (reg. only)" disabled="disabled" />
+			</div>
+		{% endif %}
+		
+		<form action="{% url "wtp.views.guess" %}" method="post">
+			{% csrf_token %}
+			
+			<div>
+				<input type="hidden" id="input-imageid" name="imageid" value="{{ image.id }}" />
+				<input type="text" id="input-solution" name="solution" value="Enter your guess here"
+					onfocus="cleanInputDefault('input-solution')" onkeypress="return solutionBoxEdited(event);" />
+				<input type="button" id="input-submit" name="submit" value="Submit" onclick="solutionBoxCheck();" />
+			</div>
+		</form>
+	{% endif %}
+</div>
