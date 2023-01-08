@@ -1,8 +1,15 @@
-# Code archive for "What The Place?" (whattheplace.com)
+# Code Archive for "What The Place?" (whattheplace.com)
 
 Code archive for whattheplace.com, a Python-/Django-based web game about guessing the location where a picture has been taken.
 
 This project was actively developed between 2009 and ~2012 and the webpage operated/maintained until 2018.
+
+Since the page is no longer live, have a look at the Internet Archive (e.g., https://web.archive.org/web/20110208013656/http://www.whattheplace.com/) or the screenshots below to see what it looked like.
+
+![Screenshot: Home](/screenshot_home_scaled.png)
+![Screenshot: Hall Of Fame](/screenshot_hall_of_fame_scaled.png)
+![Screenshot: Stats](/screenshot_stats_scaled.png)
+![Screenshot: Login](/screenshot_login_scaled.png)
 
 ## Necessary Packages (from old README)
 
